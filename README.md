@@ -1,5 +1,7 @@
 # vuetify
 
+# This is a demo project for learning purpose.
+
 ## Project setup
 ```
 npm install
