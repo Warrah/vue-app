@@ -2,7 +2,7 @@
 
 # This is a demo project for learning purpose.
 #This is just a dummy text
-### YAYYYYYY I HAVE DONE IT. Please HOjao :(
+### YAYYYYYY I HAVE DONE IT. Please HOjao :
 ## Project setup
 ```
 npm install
