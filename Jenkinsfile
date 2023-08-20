@@ -17,8 +17,10 @@ pipeline {
 
         stage('Deploy to Nginx') {
             steps {
-                // Copy the built project to the Nginx web server directory
-echo 123 | sudo -S cp -r dist/css dist/favicon.ico dist/index.html dist/js /var/www/html/
+               script {
+                    echo 'Copying files to Nginx...'
+                    sh 'echo 123 | sudo -S cp -r dist/css dist/favicon.ico dist/index.html dist/js /var/www/html/'
+                }
 
                 // Reload Nginx to apply changes
                 sh 'sudo systemctl reload nginx'
