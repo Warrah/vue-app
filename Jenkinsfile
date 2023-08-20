@@ -14,6 +14,11 @@ pipeline {
                 sh 'npm run build'
             }
         }
+        stage('Test') {
+            steps {
+               echo 'Testing.....'
+            }
+        }
 
         stage('Deploy to Nginx') {
             steps {
