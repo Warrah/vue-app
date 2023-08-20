@@ -1,20 +1,37 @@
 pipeline {
-  agent any
-  stages {
-    stage("build") {
-      steps {
-        echo 'building the application......'
-      }
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'npm install'
+                sh 'npm run build'
+            }
+        }
+
+        stage('Deploy to Nginx') {
+            steps {
+                // Copy the built project to the Nginx web server directory
+                sh 'sudo cp -r dist/* /var/www/html/'
+
+                // Reload Nginx to apply changes
+                sh 'sudo systemctl reload nginx'
+            }
+        }
     }
-     stage("test") {
-      steps {
-        echo 'testing the application......'
-      }
+
+    post {
+        success {
+            echo 'Deployment successful!'
+        }
+        failure {
+            echo 'Deployment failed!'
+        }
     }
-     stage("deploy") {
-      steps {
-        echo 'deploying the application......'
-      }
-    }
-  }
 }
