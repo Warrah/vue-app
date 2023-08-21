@@ -39,7 +39,7 @@ pipeline {
         slackSend(
             channel: '#jenkins_personal', // Specify the Slack channel or user to send notifications to
             color: 'good',
-            message: "Deployment of your Python project was successful!"
+            message: "Deployment of your vue project was successful! See localhost:8100"
         )
     }
     failure {
@@ -47,7 +47,7 @@ pipeline {
         slackSend(
             channel: '#jenkins_personal', // Specify the Slack channel or user to send notifications to
             color: 'danger',
-            message: "Deployment of your Python project failed."
+            message: "Deployment of your vue project failed."
         )
     }
     }
