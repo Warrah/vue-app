@@ -18,6 +18,24 @@ pipeline {
             steps {
                sh 'npm run lint'
             }
+             post {
+        success {
+        echo 'Test successful!'
+        slackSend(
+            channel: '#jenkins_personal', // Specify the Slack channel or user to send notifications to
+            color: 'good',
+            message: "All Clear"
+        )
+    }
+    failure {
+        echo 'Test failed!'
+        slackSend(
+            channel: '#jenkins_personal', // Specify the Slack channel or user to send notifications to
+            color: 'danger',
+            message: "Tests failed."
+        )
+    }
+    }
         }
 
         stage('Deploy to Nginx') {
